@@ -1,14 +1,3 @@
-const Sequelize = require ('sequelize')
-const sequelize = new Sequelize('test','root', 'Siexpre$$',{
-    host: '127.0.0.1',
-    dialect: 'mysql'
-})
-
-sequelize.authenticate().then(function(){
-    console.log('Conectado com sucesso')
-}).catch(function(e){
-    console.log('Falha ao se conectar' + e)
-})
 
 
 // Model para Postagens

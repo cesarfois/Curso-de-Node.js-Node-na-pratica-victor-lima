@@ -2,25 +2,48 @@
 
 const { Console } = require('console');
 const express = require('express');
+
+const handlebars = require('express-handlebars')
+
 const app = express();
-
-app.get('/', (req, res) => {
-        res.sendFile(__dirname + '/html/index.html')
-    });
+const Sequelize = require ('sequelize')
 
 
-app.get('/sobre', (req, res) => {
-    res.sendFile(__dirname + '/html/sobre.html')
-});
-
-app.get('/blog', (req, res) => {
-    res.send('resposta do blog')
-})
+// Conecction for DB
 
 
-app.get('/ola/:nome', (req, res) => {
-    res.send('<h1>hola ' + req.params.nome + '</h1>')
-})
+
+
+
+// config 
+ // Template Engine
+    const { engine } = require('express-handlebars');
+    app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}));
+    app.set('view engine', 'handlebars');
+    const sequelize = new Sequelize('test','root', 'Siexpre$$',{
+        host: '127.0.0.1',
+        dialect: 'mysql'
+    })
+    sequelize.authenticate().then(function(){
+        console.log('Conectado com sucesso ao banco de dados')
+    }).catch(function(e){
+        console.log('Falha ao se conectar' + e)
+    })
+
+
+// rotas 
+
+    app.get('/cad', function(req, res){
+        res.render('formulario')
+    })
+
+    app.post('/add', function(req, res){
+        res.send('Formulario recebido com sucesso')
+    })
+
+
+
+
 
 
 
