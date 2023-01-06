@@ -18,6 +18,10 @@ app.get('/blog', (req, res) => {
 })
 
 
+app.get('/ola/:nome', (req, res) => {
+    res.send('hola ' + req.params.nome)
+})
+
 
 
 // esta deve ser a ultima linha obrigatoriamente
