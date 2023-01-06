@@ -5,12 +5,12 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-        res.send('seja Bem vindo no meu app');
+        res.sendFile(__dirname + '/html/index.html')
     });
 
 
 app.get('/sobre', (req, res) => {
-    res.send('resposta da rota sobre')
+    res.sendFile(__dirname + '/html/sobre.html')
 });
 
 app.get('/blog', (req, res) => {
@@ -19,7 +19,7 @@ app.get('/blog', (req, res) => {
 
 
 app.get('/ola/:nome', (req, res) => {
-    res.send('hola ' + req.params.nome)
+    res.send('<h1>hola ' + req.params.nome + '</h1>')
 })
 
 
